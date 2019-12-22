@@ -1,0 +1,65 @@
+{% extends 'test_base.html' %}
+
+{% block title %}
+Thi thử hạng {{exams.name}}
+{% endblock title %}
+
+{% block time %}
+Thời gian còn lại: <span id="time">15:00</span>
+<input type="hidden" id="myVar" name="variable" value="{{ exams.exam_times }}">
+{% endblock time %}
+
+{% block question %}
+
+<form action="{% url 'result' exams.id %}" method="post">
+
+{% for question in questions %}
+
+    {% csrf_token %}
+        <h3 class="align-content-center">Câu {{forloop.counter}}: {{question.content}}</h3>
+        <input type="hidden" name="ques" value="{{ question.id }}">
+
+        {% if question.pic %}
+        <img src="/media/{{question.pic}}" class="img-fluid"> 
+        {% endif %}
+        <br>
+
+        {% for answer in question.answer_set.all %}
+            <input type="checkbox" style="text-align: left;" value="{{answer.id}}" name='answer'>
+            {{answer.content}}
+            <br>
+        {% endfor %}
+
+    <br>
+{% endfor %}
+<button type="submit" class="btn">Nộp bài</button>
+</form>
+
+{% endblock question %}
+
+{% block script %}
+    <script>
+            function startTimer(duration, display) {
+                var timer = duration, minutes, seconds;
+                setInterval(function () {
+                    minutes = parseInt(timer / 60, 10);
+                    seconds = parseInt(timer % 60, 10);
+            
+                    minutes = minutes < 10 ? "0" + minutes : minutes;
+                    seconds = seconds < 10 ? "0" + seconds : seconds;
+            
+                    display.textContent = minutes + ":" + seconds;
+            
+                    if (--timer < 0) {
+                        timer = duration;
+                    }
+                }, 1000);
+            }
+            var myVar = document.getElementById("myVar").value;
+            window.onload = function () {
+                var fiveMinutes = 60 * myVar,
+                    display = document.querySelector('#time');
+                startTimer(fiveMinutes, display);
+            };
+    </script>
+{% endblock script %}

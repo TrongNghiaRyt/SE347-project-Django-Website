@@ -1,0 +1,64 @@
+{% extends 'test_base.html' %}
+
+{% block title %}
+    Kết quả thi thử {{exam.name}}
+{% endblock title %}
+
+{% block question %}
+    {% if point < exam.question_correct %}
+        <h2 style="color:red">Kết quả: Không đạt</h2>
+    {% else %}
+        <h2 style="color:green">Kết quả: Đạt</h2>
+    {% endif %}
+    <h3>số câu đúng: {{point}}/{{exam.question_number}}</h3>
+
+    <br>
+    <h3 style="text-align: center;">Bài làm</h3>
+    <form action="" method="post">
+
+    {% for question in questions %}
+
+        {% csrf_token %}
+        <h3 class="align-content-center">Câu {{forloop.counter}}: {{question.content}}</h3>
+
+        {% if question.pic %}
+            <img src="/media/{{question.pic}}" class="img-fluid"> 
+        {% endif %}
+        <br>
+
+        {% for answer in question.answer_set.all %}
+
+            {% if answer.id in ans %}
+                {% if answer.id in corr %}
+                    <p style="text-align: left;" class="text-success">{{answer.content}}</p>
+                {% else %}
+                    <p style="text-align: left;" class="text-danger">{{answer.content}}</p>
+                {% endif %}
+
+            {% else %}
+                {% if answer.id in corr and answer.id not in ans %}
+                    <p style="text-align: left;" class="text-warning">{{answer.content}}</p>
+                {% else %}
+                    <p style="text-align: left;">{{answer.content}}</p>
+                {% endif %}
+
+            {% endif %}
+
+        {% endfor %}
+
+    <br>
+    {% endfor %}
+</form>
+
+{% endblock question %}
+
+{% block sidebar %}
+<p>Bạn phải trả lời đúng ít nhất <b>{{exam.question_correct}}/{{exam.question_number}}</b> câu
+ để đạt được bài thi sát hạch</p>
+<br>
+<h5>Hướng dẫn</h5>
+<p style="text-align: left;" class="text-success">Đây là câu trả lời đúng</p>
+<p style="text-align: left;" class="text-warning">Đây là câu cần trả lời thêm để đúng</p>
+<p style="text-align: left;" class="text-danger">Đây là câu trả lời sai</p>
+
+{% endblock sidebar %}

@@ -1,0 +1,34 @@
+{% extends 'allQuestion.html' %}
+
+{% block title %}
+Bộ câu hỏi thi bằng lái xe có đáp án
+{% endblock title %}
+
+{% block question %}
+
+{% for question in questions %}
+
+    {% csrf_token %}
+        <h3 class="align-content-center">Câu {{forloop.counter}}: {{question.content}}</h3>
+        <input type="hidden" name="ques" value="{{ question.id }}">
+
+        {% if question.pic %}
+        <img src="/media/{{question.pic}}" class="img-fluid"> 
+        {% endif %}
+        <br>
+
+        {% for answer in question.answer_set.all %}
+        <ul>
+            {% if answer.correct %}
+                <li style="text-align: left;" class="text-success">{{answer.content}}</li>
+            {% else %}
+                <li style="text-align: left;">{{answer.content}}</li>
+            {% endif %}
+        </ul>
+
+        {% endfor %}
+    <br>
+    
+{% endfor %}
+    <a href="{% url 'index' %}" style="color: white;" class="btn btn-primary py-3 px-5 btn-pill">Về trang trước</a>
+{% endblock question %}

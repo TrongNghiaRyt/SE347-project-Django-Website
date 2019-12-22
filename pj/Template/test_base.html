@@ -1,0 +1,140 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>VehiTest &mdash; Thi thử luật giao thông</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+    <link href="https://fonts.googleapis.com/css?family=Muli:300,400,700,900" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'fonts/icomoon/style.css' %}">
+
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/jquery-ui.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css' %}">
+
+    <link rel="stylesheet" href="{% static 'css/jquery.fancybox.min.css' %}">
+
+    <link rel="stylesheet" href="{% static 'css/bootstrap-datepicker.css' %}">
+
+    <link rel="stylesheet" href="{% static 'fonts/flaticon/font/flaticon.css' %}">
+
+    <link rel="stylesheet" href="{% static 'css/aos.css' %}%">
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+</head>
+
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300" style="background-color: #ddd;">
+
+    <div class="site-wrap">
+
+        <div class="site-mobile-menu site-navbar-target">
+            <div class="site-mobile-menu-header">
+                <div class="site-mobile-menu-close mt-3">
+                    <span class="icon-close2 js-menu-toggle"></span>
+                </div>
+            </div>
+            <div class="site-mobile-menu-body"></div>
+        </div>
+
+
+        </head>
+
+        <div data-spy="scroll" data-target=".site-navbar-target" data-offset="300" style="background-color: #ddd;">
+
+            <div class="site-wrap">
+
+                <div class="site-mobile-menu site-navbar-target">
+                    <div class="site-mobile-menu-header">
+                        <div class="site-mobile-menu-close mt-3">
+                            <span class="icon-close2 js-menu-toggle"></span>
+                        </div>
+                    </div>
+                    <div class="site-mobile-menu-body"></div>
+                </div>
+
+
+                <header class="site-navbar py-4 js-sticky-header site-navbar-target" role="banner"
+                    style="background-color: #7971ea;">
+
+                    <div class="container-fluid">
+                        <div class="d-flex align-items-center">
+                            <div class="site-logo mr-auto w-25"><a href="{% url 'index' %}">VehiTest</a></div>
+
+                            <div class="mx-auto text-center">
+                                <h2 class="site-menu main-menu js-clone-nav mx-auto d-none d-lg-block  m-0 p-0"
+                                    style="color: #fff">{% block title %}
+                                    
+                                    {% endblock title %}</h2>
+                            </div>
+                            <div class="ml-auto w-25">
+                                <nav class="site-navigation position-relative text-right" role="navigation">
+                                    <ul
+                                        class="site-menu main-menu site-menu-dark js-clone-nav mr-auto d-none d-lg-block m-0 p-0">
+                                    </ul>
+                                    <div style="color: white;">{% block time %}
+                                    
+                                    {% endblock time %}</div>
+                                </nav>
+                                
+                            </div>
+                </header>
+                <div class="site-section d-flex align-items-center" id="question" style="padding-top: 150px;">
+                    <div class="container d-flex align-items-center">
+                        <div class="row mb-5 justify-content-center">
+
+                            <div class="col-lg-4 col-md-12" style="padding-bottom: 15px;">
+
+                                    <div class="p-4 rounded bg-white">
+                                        {% block sidebar %}
+                                        {% endblock sidebar %}
+                                        <!--
+                                        <h2 class="text-black mb-4">We Are Excellent In Education</h2>
+                                        <p class="mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem maxime nam porro possimus fugiat quo molestiae illo.</p>
+
+                                        <div class="list-group">
+                                            <button class="list-group-item active text-center" style="width: 50px; text-align: center;">1</button>
+                                        </div>
+                                        -->
+                                    </div>
+
+                            </div>
+
+                            <div class="col-lg-8 mb-6" style="padding-bottom: 15px;">
+                                <div class="p-4 rounded bg-white">
+                                    {% block  question %}
+                                    {% endblock  %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>  
+    </div>
+
+
+    {% block script %}
+    {% endblock script %}
+    <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'js/jquery-migrate-3.0.1.min.js' %}"></script>
+    <script src="{% static 'js/jquery-ui.js' %}"></script>
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'js/jquery.stellar.min.js' %}"></script>
+    <script src="{% static 'js/jquery.countdown.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap-datepicker.min.js' %}"></script>
+    <script src="{% static 'js/jquery.easing.1.3.js' %}"></script>
+    <script src="{% static 'js/aos.js' %}"></script>
+    <script src="{% static 'js/jquery.fancybox.min.js' %}"></script>
+    <script src="{% static 'js/jquery.sticky.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+</body>
+
+</html>
