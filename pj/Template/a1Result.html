@@ -28,22 +28,16 @@
 
         {% for answer in question.answer_set.all %}
 
-            {% if answer.id in ans %}
-                {% if answer.id in corr %}
-                    <p style="text-align: left;" class="text-success">{{answer.content}}</p>
-                {% else %}
-                    <p style="text-align: left;" class="text-danger">{{answer.content}}</p>
-                {% endif %}
 
+            {% if answer.id in ans and answer.id in corr %}
+                <p style="text-align: left;" class="text-success">{{answer.content}}</p>
+            {% elif answer.id in ans and answer.id not in corr %}
+                <p style="text-align: left;" class="text-danger">{{answer.content}}</p>
+            {% elif answer.id in corr and answer.id not in ans %}
+                <p style="text-align: left;" class="text-primary">{{answer.content}}</p>
             {% else %}
-                {% if answer.id in corr and answer.id not in ans %}
-                    <p style="text-align: left;" class="text-warning">{{answer.content}}</p>
-                {% else %}
-                    <p style="text-align: left;">{{answer.content}}</p>
-                {% endif %}
-
+                <p style="text-align: left;">{{answer.content}}</p>
             {% endif %}
-
         {% endfor %}
 
     <br>
@@ -57,8 +51,8 @@
  để đạt được bài thi sát hạch</p>
 <br>
 <h5>Hướng dẫn</h5>
-<p style="text-align: left;" class="text-success">Đây là câu trả lời đúng</p>
-<p style="text-align: left;" class="text-warning">Đây là câu cần trả lời thêm để đúng</p>
-<p style="text-align: left;" class="text-danger">Đây là câu trả lời sai</p>
+<p style="text-align: left;" class="text-success">Câu trả lời của bạn là đúng</p>
+<p style="text-align: left;" class="text-primary">Đây mới là câu trả lời đúng</p>
+<p style="text-align: left;" class="text-danger">Câu trả lời của bạn là sai</p>
 
 {% endblock sidebar %}

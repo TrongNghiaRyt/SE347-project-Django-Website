@@ -12,31 +12,37 @@ def a1(request):
     return render(request, 'a1Test.html', {'questions': question})
 
 def test(request, eid):
-    examination = exam.objects.get(name='A1')
+    examination = exam.objects.get(name=eid.upper())
+    question = list()
 
-    kn = QuestionType.objects.filter(exam_type=examination.id).get(kinds='KN')
-    kn_question = Question.objects.filter(kind='KN').order_by('?')[:kn.number]
+    for qtype in QuestionType.objects.filter(exam_type=examination.id):
+        objz = Question.objects.filter(kind=qtype.kinds).order_by('?')[:qtype.number]
+        question += objz
 
-    qt =  QuestionType.objects.filter(exam_type=examination.id).get(kinds='QT')
-    qt_question = Question.objects.filter(kind='QT').order_by('?')[:qt.number]
 
-    vh = QuestionType.objects.filter(exam_type=examination.id).get(kinds='VH')
-    vh_question = Question.objects.filter(kind='VH').order_by('?')[:vh.number]
+    #kn = QuestionType.objects.filter(exam_type=examination.id).get(kinds='KN')
+    #kn_question = Question.objects.filter(kind='KN').order_by('?')[:kn.number]
 
-    td = QuestionType.objects.filter(exam_type=examination.id).get(kinds='TD')
-    td_question = Question.objects.filter(kind='TD').order_by('?')[:td.number]
+    #qt =  QuestionType.objects.filter(exam_type=examination.id).get(kinds='QT')
+    #qt_question = Question.objects.filter(kind='QT').order_by('?')[:qt.number]
 
-    bb = QuestionType.objects.filter(exam_type=examination.id).get(kinds='BB')
-    bb_question = Question.objects.filter(kind='BB').order_by('?')[:bb.number]
+    #vh = QuestionType.objects.filter(exam_type=examination.id).get(kinds='VH')
+    #vh_question = Question.objects.filter(kind='VH').order_by('?')[:vh.number]
 
-    sh = QuestionType.objects.filter(exam_type=examination.id).get(kinds='SH')
-    sh_question = Question.objects.filter(kind='SH').order_by('?')[:sh.number]
+    #td = QuestionType.objects.filter(exam_type=examination.id).get(kinds='TD')
+    #td_question = Question.objects.filter(kind='TD').order_by('?')[:td.number]
 
-    question = list(chain(kn_question, qt_question, vh_question, td_question, bb_question, sh_question))
+    #bb = QuestionType.objects.filter(exam_type=examination.id).get(kinds='BB')
+    #bb_question = Question.objects.filter(kind='BB').order_by('?')[:bb.number]
+
+    #sh = QuestionType.objects.filter(exam_type=examination.id).get(kinds='SH')
+    #sh_question = Question.objects.filter(kind='SH').order_by('?')[:sh.number]
+
+    #question = list(chain(kn_question, qt_question, vh_question, td_question, bb_question, sh_question))
     return render(request, 'a1Test.html', {'questions': question, 'exams': examination})
 
 def result(request, exam_id):
-    examination = exam.objects.get(id=exam_id)
+    examination = exam.objects.get(name=exam_id.upper())
     question_pass = 0
 
     _question = set()

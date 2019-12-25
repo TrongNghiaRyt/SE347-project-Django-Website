@@ -81,7 +81,7 @@ DATABASES = {
         'NAME': 'traffic_law',
         'USER': 'postgres',
         'PASSWORD': 'admin',
-        'HOST': 'localhost'
+        'HOST': 'localhost',
     }
 }
 

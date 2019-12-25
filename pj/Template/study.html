@@ -27,6 +27,7 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     
   </head>
+
   <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
   
   <div class="site-wrap">
@@ -50,7 +51,6 @@
           <div class="mx-auto text-center">
             <nav class="site-navigation position-relative text-right" role="navigation">
               <ul class="site-menu main-menu js-clone-nav mx-auto d-none d-lg-block  m-0 p-0">
-                <li><a href="#home-section" class="nav-link">Trang chủ</a></li>
                 <li><a href="#courses-section" class="nav-link">Thi thử</a></li>
                 <li><a href="#programs-section" class="nav-link">Học thi</a></li>
               </ul>
@@ -60,6 +60,7 @@
           <div class="ml-auto w-25">
             <nav class="site-navigation position-relative text-right" role="navigation">
               <ul class="site-menu main-menu site-menu-dark js-clone-nav mr-auto d-none d-lg-block m-0 p-0">
+                
               </ul>
             </nav>
             <a href="#" class="d-inline-block d-lg-none site-menu-toggle js-menu-toggle text-black float-right"><span class="icon-menu h3"></span></a>
@@ -69,19 +70,19 @@
       
     </header>
 
-    <div class="intro-section" id="home-section">
+    <div class="intro-section single-cover" id="home-section">
       
-      <div class="slide-1" style="background-image: url('{% static 'images/hero_1.jpg' %}');" data-stellar-background-ratio="0.5">
+      <div class="slide-1 " style="background-image: url('{% static 'images/img_2.jpg' %}');" data-stellar-background-ratio="0.5">
         <div class="container">
           <div class="row align-items-center">
             <div class="col-12">
-              <div class="row align-items-center">
-                <div class="col-lg-6 mb-4">
-                  <h1  data-aos="fade-up" data-aos-delay="100">Học và thi thử bằng lái xe online miễn phí!</h1>
-                  <p class="mb-4"  data-aos="fade-up" data-aos-delay="200">Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime ipsa nulla sed quis rerum amet natus quas necessitatibus.</p>
-                  <p data-aos="fade-up" data-aos-delay="300"><a href="#courses-section" class="btn btn-primary py-3 px-5 btn-pill">Thi thử ngay</a></p>
-
+              <div class="row justify-content-center align-items-center text-center">
+                <div class="col-lg-6">
+                  <h1 data-aos="fade-up" data-aos-delay="0">Học cấu trúc và bộ câu hỏi thi sát hạch</h1>
+                  
                 </div>
+
+                
               </div>
             </div>
             
@@ -89,8 +90,36 @@
         </div>
       </div>
     </div>
-
     
+    <div class="site-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-12 mb-5">
+
+            <div class="mb-5">
+              <h3 class="text-black">Cấu trúc bài thi sát hạch lái xe</h3>
+              <br>
+              {% for exam in exams %}
+              <h4><strong>Bằng lái xe hạng {{exam.name}}</strong></h4>
+              <p>Có tổng cộng {{ exam.question_number }} câu hỏi trong bài thi và bạn phải trả lời đúng 
+              {{ exam.question_correct }}/{{ exam.question_number }} để đạt được bài thi.</p>
+
+              <h4>Các dạng câu hỏi:</h>
+              {% for type in exam.questiontype_set.all %}
+                <p>{{ type.get_kinds_display }}</p>
+
+              {% endfor %}
+
+              {% endfor %}
+              
+
+              <p class="mt-4"><a href="#" class="btn btn-primary">Học mẹo thi</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="site-section courses-title" id="courses-section">
       <div class="container">
         <div class="row mb-5 justify-content-center">
@@ -108,11 +137,11 @@
             <!--license test div-->
             <div class="course bg-white h-100 align-self-stretch">
               <figure class="m-0">
-                <a href="{% url 'test' 'A1' %}"><img src="{% static 'images/A1_2.jpg' %}" alt="Image" class="img-fluid"></a>
+                <a href="{% url 'test' 'B1' %}"><img src="{% static 'images/A1_2.jpg' %}" alt="Image" class="img-fluid"></a>
               </figure>
               <div class="course-inner-text py-4 px-4">
                 <div class="meta"><span class="icon-clock-o"></span>20 câu hỏi / 15 phút</div>
-                <h3><a href="{% url 'test' 'A1' %}">Bằng lái xe máy A1</a></h3>
+                <h3><a href="{% url 'test' 'B1' %}">Bằng lái xe máy A1</a></h3>
                 <p>Thi thử bằng lái xe A1 chuẩn bộ giao thông vận tải 2020.</p>
               </div>
               <div class="d-flex border-top stats">
@@ -127,17 +156,13 @@
               <div class="course-inner-text py-4 px-4">
                 <div class="meta"><span class="icon-clock-o"></span>30 câu hỏi / 20 phút</div>
                 <h3><a href="{% url 'test' 'B1' %}">Bằng lái xe B1</a></h3>
-                <p>Thi thử bằng lái xe B1 chuẩn bộ giao thông vận tải. </p>
+                <p>Thi thử bằng lái xe B1 chuẩn bộ giao thông vận tải.</p>
               </div>
               <div class="d-flex border-top stats">
                 <div class="py-3 px-4"><span class="icon-users"></span> 210 người đã thi. </div>
               </div>
             </div>
-
           </div>
-
-         
-
         </div>
         <div class="row justify-content-center">
           <div class="col-7 text-center">
@@ -147,103 +172,6 @@
         </div>
       </div>
     </div>
-
-
-    <div class="site-section" id="programs-section">
-      <div class="container">
-        <div class="row mb-5 justify-content-center">
-          <div class="col-lg-7 text-center"  data-aos="fade-up" data-aos-delay="">
-            <h2 class="section-title">Luyện thi bằng lái</h2>
-            <p>Cung cấp cho bạn những kiến thức nền tảng, những mẹo để thực hiện tốt bài thi lý thuyết sát hạch bằng lái</p>
-          </div>
-        </div>
-        <div class="row mb-5 align-items-center">
-          <div class="col-lg-7 mb-5" data-aos="fade-up" data-aos-delay="100">
-            <img src="{% static 'images/undraw_youtube_tutorial.svg' %}" alt="Image" class="img-fluid">
-          </div>
-          <div class="col-lg-4 ml-auto" data-aos="fade-up" data-aos-delay="200">
-            <h2 class="text-black mb-4">Cấu trúc đề thi sát hạch và bộ câu hỏi</h2>
-            <p class="mb-4">Cho bạn các kiến thức cần thiết về một đề thi sát hạch. Học bộ câu hỏi xuất hiện trong bài thi của bạn.</p>
-
-            <div class="d-flex align-items-center custom-icon-wrap mb-3">
-              <span class="custom-icon-inner mr-3"><span class="icon icon-graduation-cap"></span></span>
-              <div><h3 class="m-0"><a href="{% url 'study' %}">Học ngay</a></h3></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="row mb-5 align-items-center">
-          <div class="col-lg-7 mb-5 order-1 order-lg-2" data-aos="fade-up" data-aos-delay="100">
-            <img src="{% static 'images/undraw_teaching.svg' alt='Image' %}" class="img-fluid">
-          </div>
-          <div class="col-lg-4 mr-auto order-2 order-lg-1" data-aos="fade-up" data-aos-delay="200">
-            <h2 class="text-black mb-4">Mẹo làm bài thi sát hạch</h2>
-            <p class="mb-4">Các mẹo làm bài thi sát hạch A1, B1, B2, ... Những mẹo này sẽ giúp các bạn hoàn thành bài thi của mình nhanh chóng và chính xác, tiết kiệm tối đa thời gian.</p>
-
-            <div class="d-flex align-items-center custom-icon-wrap mb-3">
-              <span class="custom-icon-inner mr-3"><span class="icon icon-graduation-cap"></span></span>
-              <div><a href="#">Tìm hiểu ngay</a></div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-
-    <!--
-    <div class="site-section bg-light" id="contact-section">
-      <div class="container">
-
-        <div class="row justify-content-center">
-          <div class="col-md-7">
-
-
-            
-            <h2 class="section-title mb-3">Message Us</h2>
-            <p class="mb-5">Natus totam voluptatibus animi aspernatur ducimus quas obcaecati mollitia quibusdam temporibus culpa dolore molestias blanditiis consequuntur sunt nisi.</p>
-          
-            <form method="post" data-aos="fade">
-              <div class="form-group row">
-                <div class="col-md-6 mb-3 mb-lg-0">
-                  <input type="text" class="form-control" placeholder="First name">
-                </div>
-                <div class="col-md-6">
-                  <input type="text" class="form-control" placeholder="Last name">
-                </div>
-              </div>
-
-              <div class="form-group row">
-                <div class="col-md-12">
-                  <input type="text" class="form-control" placeholder="Subject">
-                </div>
-              </div>
-
-              <div class="form-group row">
-                <div class="col-md-12">
-                  <input type="email" class="form-control" placeholder="Email">
-                </div>
-              </div>
-              <div class="form-group row">
-                <div class="col-md-12">
-                  <textarea class="form-control" id="" cols="30" rows="10" placeholder="Write your message here."></textarea>
-                </div>
-              </div>
-
-              <div class="form-group row">
-                <div class="col-md-6">
-                  
-                  <input type="submit" class="btn btn-primary py-3 px-5 btn-block btn-pill" value="Send Message">
-                </div>
-              </div>
-
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-    -->
-    
      
     <footer class="footer-section bg-white">
       <div class="container">
@@ -273,10 +201,7 @@
         </div>
       </div>
     </footer>
-
-  
-    
-  </div> <!-- .site-wrap -->
+  </div>
 
   <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
   <script src="{% static 'js/jquery-migrate-3.0.1.min.js' %}"></script>

@@ -3,4 +3,5 @@ from . import views
 
 urlpatterns = [
     path('question/<slug:kinds>', views.viewQuestion, name='question'),
+    path('', views.StudyHome, name='study'),
 ]

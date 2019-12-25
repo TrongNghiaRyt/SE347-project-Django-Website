@@ -11,7 +11,7 @@ Thời gian còn lại: <span id="time">15:00</span>
 
 {% block question %}
 
-<form action="{% url 'result' exams.id %}" method="post">
+<form action="{% url 'result' exams.name %}" method="post">
 
 {% for question in questions %}
 
