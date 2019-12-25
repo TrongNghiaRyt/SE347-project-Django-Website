@@ -1,35 +1,39 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>VehiTest - Học và thi bằng lái online</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
-    
-    <link href="https://fonts.googleapis.com/css?family=Muli:300,400,700,900" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'fonts/icomoon/style.css' %}">
 
-    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-    <link rel="stylesheet" href="{% static 'css/jquery-ui.css' %}">
-    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
-    <link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css' %}">
-    <link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css' %}">
+<head>
+  <title>VehiTest - Học và thi bằng lái online</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel="stylesheet" href="{% static 'css/jquery.fancybox.min.css' %}">
 
-    <link rel="stylesheet" href="{% static 'css/bootstrap-datepicker.css' %}">
+  <link href="https://fonts.googleapis.com/css?family=Muli:300,400,700,900" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'fonts/icomoon/style.css' %}">
 
-    <link rel="stylesheet" href="{% static 'fonts/flaticon/font/flaticon.css' %}">
+  <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/jquery-ui.css' %}">
+  <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css' %}">
 
-    <link rel="stylesheet" href="{% static 'css/aos.css' %}%">
+  <link rel="stylesheet" href="{% static 'css/jquery.fancybox.min.css' %}">
 
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    
-  </head>
+  <link rel="stylesheet" href="{% static 'css/bootstrap-datepicker.css' %}">
 
-  <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
-  
+  <link rel="stylesheet" href="{% static 'fonts/flaticon/font/flaticon.css' %}">
+
+  <link rel="stylesheet" href="{% static 'css/aos.css' %}%">
+
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+</head>
+
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
+
   <div class="site-wrap">
 
     <div class="site-mobile-menu site-navbar-target">
@@ -40,10 +44,10 @@
       </div>
       <div class="site-mobile-menu-body"></div>
     </div>
-   
-    
+
+
     <header class="site-navbar py-4 js-sticky-header site-navbar-target" role="banner">
-      
+
       <div class="container-fluid">
         <div class="d-flex align-items-center">
           <div class="site-logo mr-auto w-25"><a href="{% url 'index' %}">VehiTest</a></div>
@@ -60,37 +64,39 @@
           <div class="ml-auto w-25">
             <nav class="site-navigation position-relative text-right" role="navigation">
               <ul class="site-menu main-menu site-menu-dark js-clone-nav mr-auto d-none d-lg-block m-0 p-0">
-                
+
               </ul>
             </nav>
-            <a href="#" class="d-inline-block d-lg-none site-menu-toggle js-menu-toggle text-black float-right"><span class="icon-menu h3"></span></a>
+            <a href="#" class="d-inline-block d-lg-none site-menu-toggle js-menu-toggle text-black float-right"><span
+                class="icon-menu h3"></span></a>
           </div>
         </div>
       </div>
-      
+
     </header>
 
     <div class="intro-section single-cover" id="home-section">
-      
-      <div class="slide-1 " style="background-image: url('{% static 'images/img_2.jpg' %}');" data-stellar-background-ratio="0.5">
+
+      <div class="slide-1 " style="background-image: url('{% static 'images/img_2.jpg' %}');"
+        data-stellar-background-ratio="0.5">
         <div class="container">
           <div class="row align-items-center">
             <div class="col-12">
               <div class="row justify-content-center align-items-center text-center">
                 <div class="col-lg-6">
                   <h1 data-aos="fade-up" data-aos-delay="0">Học cấu trúc và bộ câu hỏi thi sát hạch</h1>
-                  
+
                 </div>
 
-                
+
               </div>
             </div>
-            
+
           </div>
         </div>
       </div>
     </div>
-    
+
     <div class="site-section">
       <div class="container">
         <div class="row">
@@ -101,19 +107,36 @@
               <br>
               {% for exam in exams %}
               <h4><strong>Bằng lái xe hạng {{exam.name}}</strong></h4>
-              <p>Có tổng cộng {{ exam.question_number }} câu hỏi trong bài thi và bạn phải trả lời đúng 
-              {{ exam.question_correct }}/{{ exam.question_number }} để đạt được bài thi.</p>
+              <p>Có tổng cộng {{ exam.question_number }} câu hỏi trong bài thi và bạn phải trả lời đúng
+                {{ exam.question_correct }}/{{ exam.question_number }} để đạt được bài thi.</p>
 
-              <h4>Các dạng câu hỏi:</h>
-              {% for type in exam.questiontype_set.all %}
+              <h4>Các dạng câu hỏi:</h4>
+                {% for type in exam.questiontype_set.all %}
+
                 <p>{{ type.get_kinds_display }}</p>
 
+                <!--Trick section-->
+                {% for trick in tricks %}
+                  {% if trick.kind == type.kinds %}
+
+                    <a href="#{{exam.name}}{{trick.id}}" data-toggle="collapse">{{trick.title}}</a>
+                    <div id="{{exam.name}}{{trick.id}}" class="collapse">
+                      {% for content in trick.blogcontent_set.all %}
+                        <p>{{content.title}}</p>
+                        <p>{{content.detail|linebreaks}}</p>
+                      {% endfor %}
+                    </div>
+
+                  {% endif %}
+                {% endfor %}
+                <br>
+                <a href="{% url 'question' type.kinds %}">Xem bộ câu hỏi dạng {{type.get_kinds_display}}</a>
+
+                {% endfor %}
+                <br>
               {% endfor %}
 
-              {% endfor %}
-              
-
-              <p class="mt-4"><a href="#" class="btn btn-primary">Học mẹo thi</a></p>
+                <p class="mt-4"><a href="{% url 'question' 'all' %}" class="btn btn-primary">Học bộ câu hỏi</a></p>
             </div>
           </div>
         </div>
@@ -129,7 +152,7 @@
         </div>
       </div>
     </div>
-    <div class="site-section courses-entry-wrap"  data-aos="fade-up" data-aos-delay="100">
+    <div class="site-section courses-entry-wrap" data-aos="fade-up" data-aos-delay="100">
       <div class="container">
         <div class="row">
 
@@ -137,7 +160,8 @@
             <!--license test div-->
             <div class="course bg-white h-100 align-self-stretch">
               <figure class="m-0">
-                <a href="{% url 'test' 'B1' %}"><img src="{% static 'images/A1_2.jpg' %}" alt="Image" class="img-fluid"></a>
+                <a href="{% url 'test' 'B1' %}"><img src="{% static 'images/A1_2.jpg' %}" alt="Image"
+                    class="img-fluid"></a>
               </figure>
               <div class="course-inner-text py-4 px-4">
                 <div class="meta"><span class="icon-clock-o"></span>20 câu hỏi / 15 phút</div>
@@ -151,7 +175,8 @@
 
             <div class="course bg-white h-100 align-self-stretch">
               <figure class="m-0">
-                <a href="{% url 'test' 'B1' %}"><img src="{% static 'images/B2.jpg' %}" alt="Image" class="img-fluid"></a>
+                <a href="{% url 'test' 'B1' %}"><img src="{% static 'images/B2.jpg' %}" alt="Image"
+                    class="img-fluid"></a>
               </figure>
               <div class="course-inner-text py-4 px-4">
                 <div class="meta"><span class="icon-clock-o"></span>30 câu hỏi / 20 phút</div>
@@ -172,13 +197,15 @@
         </div>
       </div>
     </div>
-     
+
     <footer class="footer-section bg-white">
       <div class="container">
         <div class="row">
           <div class="col-md-4">
             <h3>Về VehiTest</h3>
-            <p>VehiTest là một trang web giúp các bạn học và ôn luyện thi sát hạch lái xe. Với các đề thi giống như thi thật cùng với các mẹo làm bài thi hiệu quả, với chúng tôi bạn có thể dễ dàng đạt được tấm bằng lái xe mong đợi.</p>
+            <p>VehiTest là một trang web giúp các bạn học và ôn luyện thi sát hạch lái xe. Với các đề thi giống như thi
+              thật cùng với các mẹo làm bài thi hiệu quả, với chúng tôi bạn có thể dễ dàng đạt được tấm bằng lái xe mong
+              đợi.</p>
           </div>
 
           <div class="col-md-3 ml-auto">
@@ -197,7 +224,7 @@
             <div class="border-top pt-5">
             </div>
           </div>
-          
+
         </div>
       </div>
     </footer>
@@ -217,6 +244,7 @@
   <script src="{% static 'js/jquery.fancybox.min.js' %}"></script>
   <script src="{% static 'js/jquery.sticky.js' %}"></script>
   <script src="{% static 'js/main.js' %}"></script>
-    
-  </body>
+
+</body>
+
 </html>
